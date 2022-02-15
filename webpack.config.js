@@ -4,7 +4,7 @@ const path = require("path");
 After that apply all the rules in module.rules and produce the output and place it in main.js in the public folder.*/
 
 module.exports={
-    mode: "production", //the environment - development, production, none. tells webpack to use its built-in optimizations accordingly.
+    mode: "development", //the environment - development, production, none. tells webpack to use its built-in optimizations accordingly. default is production
     entry: "./index.js", //the entry point
     output: {
         path: path.resolve(__dirname, "public"), //the folder path of the output file
@@ -13,8 +13,10 @@ module.exports={
     target: "web", //setting "node" as target app (server side), and setting it as "web" is for browser (client side). Default is "web"
     devServer: {
         port: "9500", //port of dev server
-        static: ["./public"], //This option allows configuring options for serving static files from the directory 
-        open: true //opens the browser after server is successfully started
+        static: ["./public"], //This property tells Webpack what static file it should serve
+        open: true, //opens the browser after server is successfully started
+        //hot: true , //enabling and disabling HMR. takes "true", "false" and "only". "only" is used if enable Hot Module Replacement without page refresh as a fallback in case of build failures
+        //liveReload: true //disable live reload on the browser. "hot" must be set to false for this to work
     },
     resolve: {
         /* If multiple files share the same name but have different extensions, webpack will resolve the one with the 
